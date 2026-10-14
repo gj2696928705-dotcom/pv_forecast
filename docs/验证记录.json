@@ -1,0 +1,57 @@
+{
+  "历史验证日期": "2026-10-09",
+  "完整测试": {
+    "total_passed": 53,
+    "failed": 0,
+    "seconds": 616.673,
+    "command": "python -X utf8 -m unittest discover -s tests -v",
+    "log_sha256": "b683e28c41eee42901f1d5fbb65922009d090bac2c79089d81fefa14335127aa"
+  },
+  "算法源码SHA256": {
+    "pv_forecast/__init__.py": "8e2e8d79842f0a14971c35790baf251527bc75d36752474f7bdd796a19f3d883",
+    "pv_forecast/backtesting.py": "5ec7f2d3ba1888a74d83493295ee23cd7fbee0b7837389751491b6adbc4cd9cb",
+    "pv_forecast/baselines.py": "2ae903e99f170445b628259c3d477c03485fb3ee48709d54317f43c708d5c003",
+    "pv_forecast/cli.py": "391415bca20f4421e63fa1643af503c4283cfabb6244b09e7d398e93b89c452b",
+    "pv_forecast/data.py": "38c3a75303ad14b76ba6f0ad97d6b6f0183df96f53896138beb68ec83d89e912",
+    "pv_forecast/errors.py": "1c4d4a9c6233a1ed112dd5d37b25915e021922813bb702d361dc0e144e42e47f",
+    "pv_forecast/experiments.py": "2bec05ecd6ada4c80b733805291db0bb40dfac244e78368a06eb1606285cc20d",
+    "pv_forecast/metrics.py": "70311ce45b81b99e730f351db88bd5afc6a892e622737091eff5463bd72bee40",
+    "pv_forecast/models.py": "3048a73016ff8026a3ebdce8fb6da0e60418bc534b72f70d56956389653d3bd1",
+    "pv_forecast/pipeline.py": "342b497e6bf544f7fb8d496585a701ecc0384f01b2e500d0bf123319c138fa29",
+    "pv_forecast/point_correction.py": "592d506b972fa6f370130bec03f575026cc6c51513a4a0429dc9431da3dd6cf1",
+    "pv_forecast/point_experiments.py": "f47c848fbca6eca3ff4171ab243b227c8fb605acd2515b4c8df57c6ad242d5c4",
+    "pv_forecast/recalibration.py": "ceb2b24d32b1a37e5f612d1c7d2f6b826507aef2f8857ac1f537e80a1deab9cb",
+    "pv_forecast/records.py": "74e7aa4563a572437ea2d719ac0250e14f3c38584f32d07e3daa8487e373b5e6",
+    "pv_forecast/visuals.py": "d6f4fc2ddf7e4a0a1fcf90e3aef50bb49a6317abebf08ec8db4c74396eab058d",
+    "pv_forecast/weather.py": "59396a482945ac8f40f2bf5156d6186247b2dd7bb473c614fea70220075da166",
+    "tests/test_backtesting.py": "0bade303b0c3c13833968812acb35c0469d41e5d303b2ca2ac0b6ed1f9bd08f3",
+    "tests/test_daylight_calibration.py": "bb5f15b5066e50045f0a2f180edad335494b3c0e6e0c33d71c9c2f03563bdb94",
+    "tests/test_point_correction.py": "dc2fb84afe921d00020de33068adfc7c3b8b9cca627d380067059f53b786acb8",
+    "tests/test_prediction_cutoff.py": "30befe16aca67081891c02b7056644dd8e0e78bf7c043f0b8ef45d7821a5b471",
+    "tests/test_pv_forecast.py": "699273113ce78a14a962855d671b892c88bc49d232229e9ee072a7319d4f5485",
+    "tests/test_training_improvements.py": "88b2f134ade0435dbd0253f1663da113b0571672c6e01777d8f9e667a464ce0d"
+  },
+  "适用范围": {
+    "status": "candidate_only",
+    "production_accepted": false,
+    "known_limits": [
+      "Clear and partly-cloudy daylight RMSE worsened on the new path despite lower aggregate error.",
+      "Clear-weather coverage remains 49.36%; August, September and October daylight coverage is below 80%.",
+      "Night point and zero-width interval assume zero PV power; not validated against real measurements.",
+      "Simulator paths and overlapping windows cannot establish real-site accuracy or future coverage."
+    ],
+    "future_site_application_requires": [
+      "real power data and issued forecast archive",
+      "site coordinates and power semantics",
+      "real-site accuracy/reliability review and production publication process"
+    ]
+  },
+  "说明": "模型与原始日志保留在开发工作区；仓库公开算法、测试、数据生成和评估摘要。",
+  "发布检查": {
+    "日期": "2026-10-14",
+    "生成模拟数据": "通过，35040行",
+    "生成数据与原始CSV一致": true,
+    "生成器兼容检查": "24个按月完整窗口，天气只作为历史输入",
+    "打包改动": "更新生成器样本构造兼容检查；算法主代码保持历史验证版本"
+  }
+}

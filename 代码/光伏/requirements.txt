@@ -1,0 +1,8 @@
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.2
+joblib>=1.2
+jsonschema>=4.18,<5
+matplotlib>=3.7
+# TensorFlow is optional.  Without it, the package still supports baselines,
+# interval calibration, records and all non-GRU workflows.

@@ -1,0 +1,19 @@
+# 本机环境与缓存
+.venv/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.idea/
+*.py[cod]
+# 运行生成的数据、模型与输出
+代码/光伏/运行结果/
+代码/光伏/本地输出/
+代码/数据/光伏数据/*.csv
+代码/数据/光伏数据/validation_report.json
+*.log
+# 私有配置
+.env
+.env.*
+!.env.example
+*.pem
+*.key

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "forecast_id", "forecast_type", "asset_scope", "generated_at",
+    "forecast_start_at", "forecast_end_at", "interval_minutes",
+    "forecast_values", "prediction_interval", "confidence",
+    "input_data_quality_summary", "model_id", "model_version",
+    "training_data_window", "status", "audit_refs", "visualizations",
+    "visualization_errors"
+  ],
+  "properties": {
+    "forecast_id": {"type": "string", "minLength": 1},
+    "forecast_type": {"const": "pv_power"},
+    "asset_scope": {},
+    "generated_at": {"type": "string", "minLength": 1},
+    "forecast_start_at": {"type": "string", "minLength": 1},
+    "forecast_end_at": {"type": "string", "minLength": 1},
+    "interval_minutes": {"const": 15},
+    "forecast_values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "value", "unit"],
+        "properties": {
+          "timestamp": {"type": "string"},
+          "value": {"type": "number", "minimum": 0},
+          "unit": {"const": "kW"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "prediction_interval": {
+      "type": "object",
+      "required": ["method", "nominal_coverage", "values"],
+      "properties": {
+        "method": {"type": "string"},
+        "nominal_coverage": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["timestamp", "lower", "upper", "unit"],
+            "properties": {
+              "timestamp": {"type": "string"},
+              "lower": {"type": "number", "minimum": 0},
+              "upper": {"type": "number", "minimum": 0},
+              "unit": {"const": "kW"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "confidence": {"type": "object"},
+    "input_data_quality_summary": {"type": "object"},
+    "model_id": {"type": "string", "minLength": 1},
+    "model_version": {"type": "string", "minLength": 1},
+    "model_published_at": {"type": ["string", "null"]},
+    "training_data_window": {"type": "object"},
+    "fallback_forecast_ref": {"type": ["string", "null"]},
+    "status": {"enum": ["available", "degraded", "unavailable", "rolled_back"]},
+    "audit_refs": {"type": "array", "items": {"type": "string"}},
+    "visualizations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "title", "path", "mime_type", "description"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "mime_type": {"const": "image/png"},
+          "description": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "visualization_errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "message"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "message": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
